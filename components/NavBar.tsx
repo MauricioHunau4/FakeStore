@@ -18,13 +18,14 @@ import {
     CloseIcon,
     ChevronDownIcon,
 } from '@chakra-ui/icons';
+import { BsCartFill } from 'react-icons/bs'
+import { GiClothes } from 'react-icons/gi'
+import { FC } from 'react'
 
-import {GiClothes} from 'react-icons/gi'
-
-export default function WithSubnavigation() {
+const NavBar: FC<NavBar> = ({ setOpen }) => {
     const { isOpen, onToggle } = useDisclosure();
-    const LogoColor = useColorModeValue('#802C6E','white')
-    
+    const LogoColor = useColorModeValue('#802C6E', 'white')
+
     return (
         <Box>
             <Flex
@@ -50,11 +51,15 @@ export default function WithSubnavigation() {
                         aria-label={'Toggle Navigation'}
                     />
                 </Flex>
-                <Flex flex={{ base: 1 }} align={'center'} justify={{ base: 'center' }}>
-                    <Icon as={GiClothes} color={LogoColor} w={10} h={10}></Icon>
-                    <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+                <Flex flex={{ base: 1 }} align={'center'} justify={{ base: 'center' }} justifyContent={'space-between'}>
+                    <Flex alignItems={'center!important'} gap={'30px'}>
+                        <Icon as={GiClothes} color={LogoColor} w={10} h={10} cursor={'pointer'}></Icon>
+                        <Text fontSize={'4xl'} fontFamily={'fantasy'}>FakeStore</Text>
+                    </Flex>
+                    <Flex display={{ base: 'none', md: 'flex' }} >
                         <DesktopNav />
                     </Flex>
+                    <IconButton aria-label={'Open cart'} icon={<BsCartFill width={10} height={10} />} onClick={() => setOpen(true)} color={LogoColor} w={10} h={10} cursor={'pointer'}></IconButton>
                 </Flex>
             </Flex>
 
@@ -71,7 +76,7 @@ const DesktopNav = () => {
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
     return (
-        <Stack direction={'row'}>
+        <Stack direction={'row'} spacing='30px'>
             {NAV_ITEMS.map((navItem) => (
                 <Box key={navItem.label}>
                     <Popover trigger={'hover'} placement={'bottom-start'}>
@@ -161,7 +166,8 @@ const MobileNavItem = ({ label, children }: NavItem) => {
                 }}>
                 <Text
                     fontWeight={600}
-                    color={useColorModeValue('gray.600', 'gray.200')}>
+                    color={useColorModeValue('gray.600', 'gray.200')}
+                >
                     {label}
                 </Text>
                 {children && (
@@ -223,5 +229,9 @@ const NAV_ITEMS: Array<NavItem> = [
                 category: "womens's%20clothing",
             }
         ],
+    }, {
+        label: 'Surprise'
     }
 ];
+
+export default NavBar

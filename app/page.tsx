@@ -1,20 +1,29 @@
 'use client'
 import NavBar from '@/components/NavBar'
-import Cards, { Items } from '@/components/Cards'
+import Cards from '@/components/Cards'
 import Fake from '@/fakeAPI/fake.json'
-import { Flex } from '@chakra-ui/react'
+import { Flex, Grid, useDisclosure } from '@chakra-ui/react'
+import DrawerNavBar from '@/components/Drawer'
+import { useState } from 'react'
 
-export default function Home() {
+const Home = () => {
+  const [open, setOpen] = useState(false)
+  const [cart, setCart] = useState([])
+
+  console.log(cart)
   return (
     <>
-      <NavBar />
-      <main >
-        <Flex direction={'column'} wrap={'wrap'}>
-          {Fake.map((items: Items) => {
-            return <Cards key={items.id} items={items} />
+      <NavBar setOpen={setOpen} />
+      <DrawerNavBar setOpen={setOpen} open={open} cart={cart} setCart={setCart} />
+      <main>
+        <Flex flexWrap={'wrap'} justifyContent={'center'} gap={'80px'} my={10} w={'70%'} mx={'auto'} >
+          {Fake.map((items) => {
+            return <Cards key={items.id} items={items} cart={cart} setCart={setCart} />
           })}
         </Flex>
       </main>
     </>
   )
 }
+
+export default Home
