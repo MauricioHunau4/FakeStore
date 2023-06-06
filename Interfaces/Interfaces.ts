@@ -10,8 +10,20 @@ interface Items {
     }
 }
 
-interface ItemsProps {
+interface Elements{
+    countValue: number
+    element: Items
+
+}
+
+interface ItemsPropsCards {
     items: Items,
+    setCart: any,
+    cart: never[]
+}
+
+interface ItemsProps {
+    elements: Elements,
     setCart: any,
     cart: never[]
 }

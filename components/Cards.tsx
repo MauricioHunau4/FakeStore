@@ -13,7 +13,7 @@ import { FC } from 'react'
 import { StarIcon } from '@chakra-ui/icons'
 import { useState } from 'react'
 
-const Cards: FC<ItemsProps> = ({ items, setCart, cart }) => {
+const Cards: FC<ItemsPropsCards> = ({ items, setCart, cart }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleHover = () => {

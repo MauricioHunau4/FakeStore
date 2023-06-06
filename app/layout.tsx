@@ -1,5 +1,7 @@
+'use client'
 import { Inter } from 'next/font/google'
 import { Providers } from './providers'
+import { ColorModeScript } from '@chakra-ui/react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -14,7 +16,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
+        <ColorModeScript initialColorMode='dark'/>
         <Providers>
           {children}
         </Providers>

@@ -10,7 +10,6 @@ const Home = () => {
   const [open, setOpen] = useState(false)
   const [cart, setCart] = useState([])
 
-  console.log(cart)
   return (
     <>
       <NavBar setOpen={setOpen} />
