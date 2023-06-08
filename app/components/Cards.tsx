@@ -12,9 +12,12 @@ import {
 import { FC } from 'react'
 import { StarIcon } from '@chakra-ui/icons'
 import { useState } from 'react'
+import { useStoreCart } from '../store/store';
 
-const Cards: FC<ItemsPropsCards> = ({ items, setCart, cart }) => {
+const Cards: FC<ItemsPropsCards> = ({ items }) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const addCart = useStoreCart((state) => state.add)
 
   const handleHover = () => {
     setIsHovered(!isHovered);
@@ -63,11 +66,12 @@ const Cards: FC<ItemsPropsCards> = ({ items, setCart, cart }) => {
             </Text>
             <Icon as={StarIcon} color={useColorModeValue('yellow', 'black')}></Icon>
           </Flex>
-          <Button bg={useColorModeValue('#B7B7B7', '#1A202C')} color={useColorModeValue('black', 'white')} _hover={{ bg: useColorModeValue('#802C6E', '#802C6E') }} onClick={() => setCart([...cart, items])} >Add to Cart</Button>
+          <Button bg={useColorModeValue('#B7B7B7', '#1A202C')} color={useColorModeValue('black', 'white')} _hover={{ bg: useColorModeValue('#802C6E', '#802C6E') }} onClick={() => addCart(items)} >Add to Cart</Button>
         </Flex>
       </Flex>
     </Flex>
   );
 }
+
 
 export default Cards

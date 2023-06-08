@@ -10,22 +10,24 @@ interface Items {
     }
 }
 
-interface Elements{
+interface Elements {
     countValue: number
-    element: Items
+    item: Items | undefined
+}
 
+interface Cart {
+    cart: Items[],
+    add: (item: Items) => void,
+    remove: (id: number) => void
 }
 
 interface ItemsPropsCards {
     items: Items,
-    setCart: any,
-    cart: never[]
 }
 
 interface ItemsProps {
-    elements: Elements,
-    setCart: any,
-    cart: never[]
+    item: Elements | undefined,
+    cartTotal: Cart,
 }
 
 interface NavBar {
@@ -35,6 +37,4 @@ interface NavBar {
 interface Drawer {
     open: boolean,
     setOpen: any,
-    cart: never[],
-    setCart: any,
 }
