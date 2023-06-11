@@ -2,7 +2,7 @@ import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFoo
 import { FC, useState, useEffect } from 'react'
 import { BsCartFill } from 'react-icons/bs'
 import ItemsDrawer from "./ItemsDrawer"
-import { useStoreCart } from '@/app/store/store'
+import { useStoreCart } from '@/store/store'
 
 const DrawerNavBar: FC<Drawer> = ({ setOpen, open }) => {
     const [total, setTotal] = useState(0)

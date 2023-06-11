@@ -16,6 +16,7 @@ import { useStoreCart } from '../store/store';
 
 const Cards: FC<ItemsPropsCards> = ({ items }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [clicked, setClicked] = useState(false)
   const addItem = useStoreCart((state) => state.addItem);
 
   const addingItem = (item: any) => {
@@ -42,11 +43,11 @@ const Cards: FC<ItemsPropsCards> = ({ items }) => {
       rounded={'lg'}
       pos={'relative'}
       zIndex={1}
-      cursor={'pointer'}
     >
       <Image
         rounded={'lg'}
         height={200}
+        cursor={'pointer'}
         width={200}
         alt={items.title}
         objectFit={'cover'}
@@ -69,7 +70,9 @@ const Cards: FC<ItemsPropsCards> = ({ items }) => {
             </Text>
             <Icon as={StarIcon} color={useColorModeValue('yellow', 'black')}></Icon>
           </Flex>
-          <Button bg={useColorModeValue('#B7B7B7', '#1A202C')} color={useColorModeValue('black', 'white')} _hover={{ bg: useColorModeValue('#802C6E', '#802C6E') }} onClick={() => addingItem(items)} >Add to Cart</Button>
+          <Button bg={useColorModeValue('#B7B7B7', '#1A202C')} color={useColorModeValue('black', 'white')} _hover={{ bg: useColorModeValue('#802C6E', '#802C6E') }} onMouseDown={() => { setClicked(true) }} onMouseUp={() => { setClicked(false) }} onClick={() => addingItem(items)}>
+            <Text color={!clicked ? 'white' : 'black'}> Add to Cart </Text>
+          </Button>
         </Flex>
       </Flex>
     </Flex>

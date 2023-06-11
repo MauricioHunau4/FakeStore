@@ -51,12 +51,12 @@ const NavBar: FC<NavBar> = ({ setOpen }) => {
                         aria-label={'Toggle Navigation'}
                     />
                 </Flex>
-                <Flex flex={{ base: 1 }} align={'center'} justify={{ base: 'center' }} justifyContent={'space-between'}>
+                <Flex flex={{ base: 1 }} align={'center'} justify={{ base: 'center' }} justifyContent={'space-between'} gap={10}>
                     <Flex alignItems={'center!important'} gap={'30px'}>
                         <Icon as={GiClothes} color={LogoColor} w={10} h={10} cursor={'pointer'}></Icon>
                         <Text fontSize={'4xl'} fontFamily={'fantasy'}>FakeStore</Text>
                     </Flex>
-                    <Flex display={{ base: 'none', md: 'flex' }} >
+                    <Flex display={{ base: 'none', md: 'flex' }} flexGrow={1}>
                         <DesktopNav />
                     </Flex>
                     <IconButton aria-label={'Open cart'} icon={<BsCartFill width={10} height={10} />} onClick={() => setOpen(true)} color={LogoColor} w={10} h={10} cursor={'pointer'}></IconButton>
@@ -76,13 +76,13 @@ const DesktopNav = () => {
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
     return (
-        <Stack direction={'row'} spacing='30px'>
+        <Stack direction={'row'} spacing='30px' >
             {NAV_ITEMS.map((navItem) => (
                 <Box key={navItem.label}>
                     <Popover trigger={'hover'} placement={'bottom-start'}>
                         <PopoverTrigger>
                             <Link
-                                fontSize={'sm'}
+                                fontSize={'2xl'}
                                 fontWeight={500}
                                 color={linkColor}
                                 _hover={{
@@ -121,6 +121,7 @@ const DesktopSubNav = ({ label, subLabel }: NavItem) => {
             role={'group'}
             display={'block'}
             p={2}
+            href={`/category/${label.toLowerCase()}`}
             rounded={'md'}
             _hover={{ bg: useColorModeValue('#802C6E', 'gray.900') }}>
             <Stack direction={'row'} align={'center'}>
