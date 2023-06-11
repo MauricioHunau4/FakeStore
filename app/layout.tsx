@@ -16,8 +16,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <ColorModeScript initialColorMode='dark'/>
+      <body className={inter.className}>
+        <ColorModeScript initialColorMode='dark' />
         <Providers>
           {children}
         </Providers>

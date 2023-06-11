@@ -16,8 +16,11 @@ import { useStoreCart } from '../store/store';
 
 const Cards: FC<ItemsPropsCards> = ({ items }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const addItem = useStoreCart((state) => state.addItem);
 
-  const addCart = useStoreCart((state) => state.add)
+  const addingItem = (item: any) => {
+    addItem(item)
+  }
 
   const handleHover = () => {
     setIsHovered(!isHovered);
@@ -66,7 +69,7 @@ const Cards: FC<ItemsPropsCards> = ({ items }) => {
             </Text>
             <Icon as={StarIcon} color={useColorModeValue('yellow', 'black')}></Icon>
           </Flex>
-          <Button bg={useColorModeValue('#B7B7B7', '#1A202C')} color={useColorModeValue('black', 'white')} _hover={{ bg: useColorModeValue('#802C6E', '#802C6E') }} onClick={() => addCart(items)} >Add to Cart</Button>
+          <Button bg={useColorModeValue('#B7B7B7', '#1A202C')} color={useColorModeValue('black', 'white')} _hover={{ bg: useColorModeValue('#802C6E', '#802C6E') }} onClick={() => addingItem(items)} >Add to Cart</Button>
         </Flex>
       </Flex>
     </Flex>

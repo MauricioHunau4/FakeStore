@@ -10,15 +10,11 @@ interface Items {
     }
 }
 
-interface Elements {
-    countValue: number
-    item: Items | undefined
-}
-
-interface Cart {
-    cart: Items[],
-    add: (item: Items) => void,
-    remove: (id: number) => void
+interface StoreState {
+    items: { item: Items; count: number }[];
+    addItem: (item: any) => void;
+    removeItem: (item: any) => void;
+    removeOneItem: (item: any) => void;
 }
 
 interface ItemsPropsCards {
@@ -26,8 +22,10 @@ interface ItemsPropsCards {
 }
 
 interface ItemsProps {
-    item: Elements | undefined,
-    cartTotal: Cart,
+    item: StoreState['items'][number]
+    addItem: (item: Items) => void,
+    removeItem: (item: Items) => void
+    removeOneItem: (item: Items) => void
 }
 
 interface NavBar {
