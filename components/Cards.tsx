@@ -1,9 +1,7 @@
 import {
-  Box,
   useColorModeValue,
   Heading,
   Text,
-  Stack,
   Image,
   Flex,
   Icon,
@@ -49,10 +47,11 @@ const Cards: FC<ItemsPropsCards> = ({ items }) => {
         height={200}
         cursor={'pointer'}
         width={200}
+        aspectRatio={'16/9'}
         alt={items.title}
         objectFit={'cover'}
         mx={'auto'}
-        src={items.image}
+        src={items.images[0]}
         transform={isHovered ? 'scale(1.1)' : 'none'}
         transition='transform ease-in 0.2s'
       />
@@ -66,7 +65,7 @@ const Cards: FC<ItemsPropsCards> = ({ items }) => {
         <Flex direction={'row'} align={'center'} position={'relative'} justifyContent={'space-between'} w={'full'}>
           <Flex alignItems={'baseline'} gap={'10px'}>
             <Text fontWeight={800} fontSize={'xl'} color={useColorModeValue('white', 'black')}>
-              {items.rating.rate}
+              {items.rating}
             </Text>
             <Icon as={StarIcon} color={useColorModeValue('yellow', 'black')}></Icon>
           </Flex>

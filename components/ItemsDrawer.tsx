@@ -18,7 +18,7 @@ const ItemsDrawer = ({ item, removeItem, addItem, removeOneItem }: ItemsProps) =
 
     return (<Box rounded={'lg'} m={'auto'} position={'relative'} bg={useColorModeValue('#802C6E', '#b7b7b7')}>
         <Flex gap={5} alignItems={'center'} m={3} >
-            <Image rounded={'lg'} alt={itemValue?.title} w={20} h={20} src={itemValue?.image} />
+            <Image rounded={'lg'} alt={itemValue?.title} w={20} h={20} src={itemValue?.images[0]} />
             <Flex flexDirection={'column'} w={'80%'}>
                 <Text fontSize={{ base: '3xl', md: 'md' }} fontWeight={500} color={useColorModeValue('white', 'black')}>{itemValue?.title}</Text>
                 <Text fontSize={{ base: '2xl', md: 'sm' }} h={10} overflow={'hidden'} textOverflow={'ellipsis'} color={useColorModeValue('white', 'black')}>{itemValue?.description.split('.')[0]}.</Text>

@@ -2,9 +2,7 @@
 import { Inter } from 'next/font/google'
 import { Providers } from './providers'
 import { ColorModeScript } from '@chakra-ui/react'
-import { useState } from 'react'
-import NavBar from '@/components/NavBar'
-import DrawerNavBar from '@/components/Drawer'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -17,14 +15,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const [open, setOpen] = useState(false)
+
   return (
     <html lang="en">
       <body>
-        <ColorModeScript initialColorMode='dark' />
+      <ColorModeScript initialColorMode='dark' />
         <Providers>
-          <NavBar setOpen={setOpen} />
-          <DrawerNavBar setOpen={setOpen} open={open} />
           {children}
         </Providers>
       </body>

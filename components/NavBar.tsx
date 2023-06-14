@@ -27,7 +27,7 @@ const NavBar: FC<NavBar> = ({ setOpen }) => {
     const LogoColor = useColorModeValue('#802C6E', 'white')
 
     return (
-        <Box>
+        <header>
             <Flex
                 bg={useColorModeValue('white', 'gray.800')}
                 color={useColorModeValue('gray.600', 'white')}
@@ -66,7 +66,7 @@ const NavBar: FC<NavBar> = ({ setOpen }) => {
             <Collapse in={isOpen} animateOpacity>
                 <MobileNav />
             </Collapse>
-        </Box>
+        </header>
     );
 }
 
