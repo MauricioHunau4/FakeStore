@@ -11,19 +11,20 @@ import { FC } from 'react'
 import { StarIcon } from '@chakra-ui/icons'
 import { useState } from 'react'
 import { useStoreCart } from '../store/store';
+import { useCart } from '@/app/hooks/useCart';
 
-const Cards: FC<ItemsPropsCards> = ({ items }) => {
+const Cards = ({ items }: ItemsPropsCards) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [clicked, setClicked] = useState(false)
-  const addItem = useStoreCart((state) => state.addItem);
-
-  const addingItem = (item: any) => {
-    addItem(item)
-  }
-
+  const [clicked, setClicked] = useState(false);
+  const { addToCart } = useCart()
+  const checkProductInCart = (product: Items) => ((item: Items) => item.id === product.id)
+  //cabmiar icono si el producto ya se encuentra
+  //Hacer categorias
+  //Hacer filtros
   const handleHover = () => {
     setIsHovered(!isHovered);
   };
+
 
   return (
     <Flex
@@ -69,7 +70,7 @@ const Cards: FC<ItemsPropsCards> = ({ items }) => {
             </Text>
             <Icon as={StarIcon} color={useColorModeValue('yellow', 'black')}></Icon>
           </Flex>
-          <Button bg={useColorModeValue('#B7B7B7', '#1A202C')} color={useColorModeValue('black', 'white')} _hover={{ bg: useColorModeValue('#802C6E', '#802C6E') }} onMouseDown={() => { setClicked(true) }} onMouseUp={() => { setClicked(false) }} onClick={() => addingItem(items)}>
+          <Button bg={useColorModeValue('#B7B7B7', '#1A202C')} color={useColorModeValue('black', 'white')} _hover={{ bg: useColorModeValue('#802C6E', '#802C6E') }} onMouseDown={() => { setClicked(true) }} onMouseUp={() => { setClicked(false) }} onClick={() => addToCart(items)}>
             <Text color={!clicked ? 'white' : 'black'}> Add to Cart </Text>
           </Button>
         </Flex>

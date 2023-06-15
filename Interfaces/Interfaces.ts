@@ -5,7 +5,8 @@ interface Items {
     price: number;
     discountPercentage: number;
     rating: number;
-    stock:number;
+    quantity: number;
+    stock: number;
     brand: string;
     category: string;
     thumbnail: string;

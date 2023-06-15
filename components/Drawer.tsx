@@ -3,22 +3,20 @@ import { FC, useState, useEffect } from 'react'
 import { BsCartFill } from 'react-icons/bs'
 import ItemsDrawer from "./ItemsDrawer"
 import { useStoreCart } from '@/store/store'
+import { useCart } from "@/app/hooks/useCart"
 
 const DrawerNavBar: FC<Drawer> = ({ setOpen, open }) => {
-    const [total, setTotal] = useState(0)
-    const items = useStoreCart((state) => state.items);
-    const addItem = useStoreCart((state) => state.addItem);
-    const removeItem = useStoreCart((state) => state.removeItem);
-    const removeOneItem = useStoreCart((state) => state.removeOneItem);
+    const [total, setTotal] = useState<number>(0)
+    const { cart } = useCart()
 
     useEffect(() => {
         let totalPrice = 0;
 
-        items.forEach((item) => {
-            totalPrice += item.count * item.item.price;
+        cart.forEach((item: Items) => {
+            totalPrice += (item.price * item.quantity)
         });
         setTotal(totalPrice)
-    }, [items])
+    }, [cart])
 
     return (
         <>
@@ -34,13 +32,11 @@ const DrawerNavBar: FC<Drawer> = ({ setOpen, open }) => {
                     <DrawerHeader display={'flex'} alignItems={'center'} gap={3} fontSize={'30px'}><Icon as={BsCartFill} w={10} h={10}></Icon>Cart</DrawerHeader>
                     <DrawerBody>
                         <Flex gap={5} flexDirection={'column'}>
-                            {items.map((item: StoreState['items'][number]) => {
-
-                                return <ItemsDrawer key={item?.item?.id} item={item} removeItem={removeItem} addItem={addItem} removeOneItem={removeOneItem} />
+                            {cart && cart.map((item: Items) => {
+                                return <ItemsDrawer key={item?.id} items={item} />
                             })}
                         </Flex>
                     </DrawerBody>
-                    {/*   */}
                     <DrawerFooter alignItems={'center'} justifyContent={'space-between'}>
                         <Text fontSize={'4xl'}>Total ${total.toFixed(2)}</Text>
                         <Button colorScheme='blue' onClick={() => setOpen(false)}>Go to pay</Button>
