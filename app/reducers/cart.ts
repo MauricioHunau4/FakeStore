@@ -13,7 +13,7 @@ export const updateLocalStorage = (state: Items[]) => {
 }
 
 const UPDATE_STATE_BY_ACTION = {
-    [CART_ACTION_TYPES.ADD_TO_CART]: (state, action) => {
+    [CART_ACTION_TYPES.ADD_TO_CART]: (state: Items[] , action:{type: string, payload :{id: number}}) => {
         const { id } = action.payload
         const productInCartIndex = state.findIndex((item: Items) => item.id === id)
 
@@ -40,7 +40,7 @@ const UPDATE_STATE_BY_ACTION = {
         return newState
     },
 
-    [CART_ACTION_TYPES.REMOVE_ONE_FROM_CART]: (state, action) => {
+    [CART_ACTION_TYPES.REMOVE_ONE_FROM_CART]: (state: Items[], action:{type: string, payload :{id: number}}) => {
         const { id } = action.payload
         const productInCartIndex = state.findIndex((item: Items) => item.id === id)
 
@@ -61,7 +61,7 @@ const UPDATE_STATE_BY_ACTION = {
         }
     },
 
-    [CART_ACTION_TYPES.REMOVE_FROM_CART]: (state, action) => {
+    [CART_ACTION_TYPES.REMOVE_FROM_CART]: (state: Items[], action:{type: string, payload :{id: number}}) => {
         const { id } = action.payload
         const newState = state.filter((item: Items) => item.id !== id)
         updateLocalStorage(newState)
@@ -74,7 +74,7 @@ const UPDATE_STATE_BY_ACTION = {
     }
 }
 
-export const cartReducer = (state, action) => {
+export const cartReducer = (state: Items[], action:{type: string, payload :{id: number}}) => {
     const { type: actionType } = action
     const updateState = UPDATE_STATE_BY_ACTION[actionType]
     return updateState ? updateState(state, action) : state

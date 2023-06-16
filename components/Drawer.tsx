@@ -1,8 +1,7 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Icon, Text } from "@chakra-ui/react"
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Icon, Text, useColorModeValue } from "@chakra-ui/react"
 import { FC, useState, useEffect } from 'react'
 import { BsCartFill } from 'react-icons/bs'
 import ItemsDrawer from "./ItemsDrawer"
-import { useStoreCart } from '@/store/store'
 import { useCart } from "@/app/hooks/useCart"
 
 const DrawerNavBar: FC<Drawer> = ({ setOpen, open }) => {
@@ -27,7 +26,7 @@ const DrawerNavBar: FC<Drawer> = ({ setOpen, open }) => {
                 onClose={() => setOpen(false)}
             >
                 <DrawerOverlay />
-                <DrawerContent>
+                <DrawerContent bg={'#23272B'}>
                     <DrawerCloseButton />
                     <DrawerHeader display={'flex'} alignItems={'center'} gap={3} fontSize={'30px'}><Icon as={BsCartFill} w={10} h={10}></Icon>Cart</DrawerHeader>
                     <DrawerBody>
@@ -39,7 +38,7 @@ const DrawerNavBar: FC<Drawer> = ({ setOpen, open }) => {
                     </DrawerBody>
                     <DrawerFooter alignItems={'center'} justifyContent={'space-between'}>
                         <Text fontSize={'4xl'}>Total ${total.toFixed(2)}</Text>
-                        <Button colorScheme='blue' onClick={() => setOpen(false)}>Go to pay</Button>
+                        <Button bg={useColorModeValue('#802C6E', '#b7b7b7')} color={useColorModeValue('white', 'black')} onClick={() => setOpen(false)}>Continue</Button>
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer >

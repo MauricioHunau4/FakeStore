@@ -22,7 +22,7 @@ interface StoreState {
 
 interface ItemsPropsCards {
     items: Items,
-}
+}[]
 
 interface ItemsProps {
     item: StoreState['items'][number]

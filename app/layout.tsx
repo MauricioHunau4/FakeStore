@@ -6,7 +6,6 @@ import { useState } from 'react'
 import NavBar from '@/components/NavBar'
 import DrawerNavBar from '@/components/Drawer'
 import { CartProvider } from './contextProvider/context'
-import { Footer } from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,10 +26,13 @@ export default function RootLayout({
         <ColorModeScript initialColorMode='dark' />
         <Providers>
           <CartProvider>
-            <NavBar setOpen={setOpen} />
-            <DrawerNavBar setOpen={setOpen} open={open} />
-            {children}
-            <Footer />
+            <header>
+              <NavBar setOpen={setOpen} />
+              <DrawerNavBar setOpen={setOpen} open={open} />
+            </header>
+            <main>
+              {children}
+            </main>
           </CartProvider>
         </Providers>
       </body>

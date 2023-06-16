@@ -9,7 +9,24 @@ const config = {
   useSystemColorMode: false,
 }
 
+
 // 3. extend the theme
-const theme = extendTheme({ config })
+const theme = extendTheme({
+  colors: {
+    dark: '#232b2b'
+  },
+  config: {
+    initialColorMode: 'dark',
+    useSystemColorMode: false,
+  },
+  styles: {
+    global: (props: {colorMode: string}) => ({
+      body: {
+        color: props.colorMode === 'dark' ? 'white' : 'black',
+        bg: props.colorMode === 'dark' ? '#232b2b' : 'white',
+      },
+    }),
+  }
+})
 
 export default theme

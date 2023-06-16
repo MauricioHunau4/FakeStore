@@ -24,12 +24,12 @@ import { FC } from 'react'
 
 const NavBar: FC<NavBar> = ({ setOpen }) => {
     const { isOpen, onToggle } = useDisclosure();
-    const LogoColor = useColorModeValue('#802C6E', 'white')
+    const LogoColor = useColorModeValue('#232b2b', 'white')
 
     return (
         <header>
             <Flex
-                bg={useColorModeValue('white', 'gray.800')}
+                bg={useColorModeValue('white', '#232b2b')}
                 color={useColorModeValue('gray.600', 'white')}
                 minH={'60px'}
                 py={{ base: 2 }}
@@ -38,11 +38,9 @@ const NavBar: FC<NavBar> = ({ setOpen }) => {
                 borderStyle={'solid'}
                 borderColor={useColorModeValue('gray.200', 'gray.900')}
                 align={'center'}>
-                <Flex
-                    flex={{ base: 1, md: 'auto' }}
-                    ml={{ base: -2 }}
-                    display={{ base: 'flex', md: 'none' }}>
+                <Flex flex={{ base: 1 }} align={'center'} justify={{ base: 'center' }} justifyContent={'space-between'} gap={10}>
                     <IconButton
+                        display={{ base: 'flex', md: 'none' }}
                         onClick={onToggle}
                         icon={
                             isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
@@ -50,11 +48,9 @@ const NavBar: FC<NavBar> = ({ setOpen }) => {
                         variant={'ghost'}
                         aria-label={'Toggle Navigation'}
                     />
-                </Flex>
-                <Flex flex={{ base: 1 }} align={'center'} justify={{ base: 'center' }} justifyContent={'space-between'} gap={10}>
-                    <Flex alignItems={'center!important'} gap={'30px'}>
-                        <Icon as={GiClothes} color={LogoColor} w={10} h={10} cursor={'pointer'}></Icon>
-                        <Text fontSize={'4xl'} fontFamily={'fantasy'}>FakeStore</Text>
+                    <Flex alignItems={'center!important'} gap={'10px'} cursor={'pointer'}>
+                        <Icon as={GiClothes} color={LogoColor} w={10} h={10} ></Icon>
+                        <Text fontSize={'4xl'} fontFamily={'fantasy'} display={{ base: 'none' }}>FakeStore</Text>
                     </Flex>
                     <Flex display={{ base: 'none', md: 'flex' }} flexGrow={1}>
                         <DesktopNav />
@@ -62,18 +58,18 @@ const NavBar: FC<NavBar> = ({ setOpen }) => {
                     <IconButton aria-label={'Open cart'} icon={<BsCartFill width={10} height={10} />} onClick={() => setOpen(true)} color={LogoColor} w={10} h={10} cursor={'pointer'}></IconButton>
                 </Flex>
             </Flex>
-
-            <Collapse in={isOpen} animateOpacity>
+            <Collapse in={isOpen} animateOpacity >
                 <MobileNav />
             </Collapse>
+
         </header>
     );
 }
 
 const DesktopNav = () => {
-    const linkColor = useColorModeValue('#802C6E', 'gray.200');
-    const linkHoverColor = useColorModeValue('#802C6E', 'white');
-    const popoverContentBgColor = useColorModeValue('white', 'gray.800');
+    const linkColor = useColorModeValue('#232b2b', 'white');
+    const linkHoverColor = useColorModeValue('gray.800', 'gray.400');
+    const popoverContentBgColor = useColorModeValue('white', '#23272B');
 
     return (
         <Stack direction={'row'} spacing='30px' >
@@ -123,12 +119,12 @@ const DesktopSubNav = ({ label, subLabel }: NavItem) => {
             p={2}
             href={`/category/${label.toLowerCase()}`}
             rounded={'md'}
-            _hover={{ bg: useColorModeValue('#802C6E', 'gray.900') }}>
+            _hover={{ bg: useColorModeValue('gray.200', '') }}>
             <Stack direction={'row'} align={'center'}>
                 <Box>
                     <Text
                         transition={'all .3s ease'}
-                        _groupHover={{ color: '#802C6E' }}
+                        _groupHover={{ color: 'gray.400' }}
                         fontWeight={500}>
                         {label}
                     </Text>
@@ -142,7 +138,7 @@ const DesktopSubNav = ({ label, subLabel }: NavItem) => {
 const MobileNav = () => {
     return (
         <Stack
-            bg={useColorModeValue('white', 'gray.800')}
+            bg={useColorModeValue('white', '#23272B')}
             p={4}
             display={{ md: 'none' }}>
             {NAV_ITEMS.map((navItem) => (
