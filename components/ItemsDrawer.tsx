@@ -27,7 +27,7 @@ const ItemsDrawer: FC<ItemsPropsCards> = (item) => {
             <Image rounded={'lg'} alt={itemValue?.title} w={20} h={20} src={itemValue.images[0]} />
             <Flex flexDirection={'column'} w={'80%'}>
                 <Text fontSize={{ base: '3xl', md: 'md' }} fontWeight={500} color={useColorModeValue('white', 'black')}>{itemValue?.title}</Text>
-                <Text fontSize={{ base: '2xl', md: 'sm' }} h={10} overflow={'hidden'} textOverflow={'ellipsis'} color={useColorModeValue('white', 'black')}>{itemValue?.description}.</Text>
+                <Text fontSize={{ base: '2xl', md: 'sm' }} h={10} overflow={'hidden'} textOverflow={'ellipsis'} color={useColorModeValue('white', 'black')}  style={{lineClamp: 3, overflow: 'hidden'}}>{itemValue?.description}.</Text>
             </Flex>
             <IconButton position={'absolute'} color={useColorModeValue('white', 'black')} bg={'transparent'} top={0} right={0} aria-label='Delete Item' icon={<BsFillTrash3Fill />} onClick={() => { deleteItem(itemValue) }}></IconButton>
             <Flex flexDirection={'column'} alignSelf={'flex-end'}>
